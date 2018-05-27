@@ -1,6 +1,5 @@
 package springtemplate.controllers;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class HomeController {
 	
 	
 	@RequestMapping("/")
-	public ModelAndView home(ModelAndView mav) throws SQLException, ClassNotFoundException {
+	public ModelAndView home(ModelAndView mav) {
 		mav.setViewName("home");
 		mav.addObject("users",userDao.getAll());
 		return mav;
