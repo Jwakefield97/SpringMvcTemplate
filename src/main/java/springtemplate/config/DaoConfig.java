@@ -35,7 +35,7 @@ public class DaoConfig {
   @Value("false")
   private String HIBERNATE_SHOW_SQL;
   
-  @Value("none")
+  @Value("none") //set to "create" to create tables when the server starts
   private String HIBERNATE_HBM2DDL_AUTO;
 
   @Value("springtemplate")
