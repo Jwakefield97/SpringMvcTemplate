@@ -70,5 +70,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	public MultipartResolver multipartResolver() {
 		return new CommonsMultipartResolver();
 	}
+	
+	
 
 }

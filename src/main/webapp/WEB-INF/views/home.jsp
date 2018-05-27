@@ -7,8 +7,13 @@
 		<title>Welcome</title>
 	</head>
 	<body>
-		<div>
-			Hello world from ${page} page
-		</div>
+		<ul> 
+			<c:forEach items="${users}" var="user">
+         		<li>
+         			<span>name ${user.getName()}</span>
+         			<span>email ${user.getEmail()}</span>
+         		</li>
+      		</c:forEach>
+		</ul>
 	</body>
 </html>
