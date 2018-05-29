@@ -1,8 +1,7 @@
-CREATE TABLE spring.users (
+CREATE TABLE spring.user (
 	id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    name varchar(255),
-    email varchar(255)
+    name varchar(255) NOT NULL,
+    email varchar(255) NOT NULL,
+    username varchar(255) NOT NULL,
+    password varchar(255) NOT NULL
 );
-insert into spring.users (id,name,email) values (1,"john","john@gmail.com");
-insert into spring.users (id,name,email) values (2,"jack","jack@gmail.com");
-insert into spring.users (id,name,email) values (3,"tom","tom@gmail.com");

@@ -13,14 +13,17 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="users")
+@Table(name="user")
 @Getter
 @Setter
 @NoArgsConstructor
 public class User {
 
   @Id
+  @JsonIgnore
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
   
@@ -31,14 +34,25 @@ public class User {
   @NotNull
   @Size(min = 2, max = 80)
   private String name;
+  
+  @NotNull
+  @Size(min = 2, max = 50)
+  private String username;
+  
+  @NotNull
+  @Size(min = 2, max = 255)
+  private String password;
+  
 
   public User(long id) { 
     this.id = id;
   }
 
-  public User(String email, String name) {
+  public User(String name, String email, String username, String password) {
     this.email = email;
     this.name = name;
+    this.username = username;
+    this.password = password;
   }
   
 } 

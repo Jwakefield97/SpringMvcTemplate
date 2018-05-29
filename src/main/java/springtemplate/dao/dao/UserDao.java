@@ -43,6 +43,12 @@ public class UserDao {
         .setParameter("email", email)
         .uniqueResult();
   }
+  
+  public User getByUsername(String username) {
+	  return (User) getSession().createQuery("from User where username = :username")
+			  .setParameter("username",username)
+			  .uniqueResult();
+  }
 
   public User getById(long id) {
     return (User) getSession().load(User.class, id);
