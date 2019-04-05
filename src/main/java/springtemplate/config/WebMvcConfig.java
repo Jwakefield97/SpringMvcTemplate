@@ -1,8 +1,13 @@
 package springtemplate.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.context.request.async.TimeoutCallableProcessingInterceptor;
 import org.springframework.web.multipart.MultipartResolver;
@@ -35,9 +40,29 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //		resolvers.add(new CustomArgumentResolver());
 //	}
 
+    @Bean
+    public DataSource getDataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/spring");
+        dataSource.setUsername("root");
+        dataSource.setPassword("password");
+         
+        return dataSource;
+    }
+    
+    @Bean
+    public JdbcTemplate getJdbcTemplate() {
+    	return new JdbcTemplate(getDataSource());
+    }
+    
+    @Bean
+    public NamedParameterJdbcTemplate getNamedJdbcTemplate() {
+    	return new NamedParameterJdbcTemplate(getDataSource());
+    }
+
 	// Handle HTTP GET requests for /resources/** by efficiently serving
 	// static resources under ${webappRoot}/resources/
-
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
