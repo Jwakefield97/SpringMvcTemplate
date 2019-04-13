@@ -12,6 +12,7 @@ import springtemplate.dao.domain.User;
 
 @RestController
 public class HomeController {
+
 	
 	@Autowired 
 	UserDao userDao;
@@ -19,7 +20,6 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public List<User> home() {
-		
 		return userDao.getUsers();
 	}
 
